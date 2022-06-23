@@ -2,8 +2,10 @@ package com.example.githubrepoapp.endpoints;
 
 import com.example.githubrepoapp.models.RepoPojo;
 
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -11,6 +13,6 @@ import retrofit2.http.Query;
  */
 public interface IRepoApi {
     @GET("search/repositories")
-    Call<RepoPojo> getAllRepositories(@Query("q") String query);
+    Call<RepoPojo> getAllRepositories(@Query("q") String query, @Query("sort") String starts);
 
 }

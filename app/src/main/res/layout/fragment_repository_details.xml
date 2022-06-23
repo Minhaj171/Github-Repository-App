@@ -4,6 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="bindingPojoDetails"
+            type="com.example.githubrepoapp.models.ItemPojo" />
+
+        <variable
+            name="profilePhoto"
+            type="String" />
+
+        <variable
+            name="exception"
+            type="String" />
+
 
     </data>
 
@@ -38,8 +50,8 @@
                         android:id="@+id/userImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_github"
                         app:civ_border_width="2dp"
+                        android:Thumb="@{profilePhoto}"
                         app:civ_border_color="#FF000000"
                         android:layout_gravity="center"
                         app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +66,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginTop="5dp"
-                        android:text="Minhajul Islam"
+                        android:text="@{bindingPojoDetails.fullName != null? bindingPojoDetails.fullName.empty? exception: bindingPojoDetails.fullName: exception}"
                         style="@style/TextAppearance.MaterialComponents.Headline6"
                         app:layout_constraintEnd_toEndOf="@+id/userImage"
                         app:layout_constraintStart_toStartOf="@+id/userImage"
@@ -72,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Last Updated : 20 jan, 2022"
+                android:text="@{bindingPojoDetails.lastUpdatedDate != null? bindingPojoDetails.lastUpdatedDate.empty? exception: bindingPojoDetails.lastUpdatedDate: exception}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userInfoContainer"
                 />
@@ -81,7 +93,7 @@
                 android:id="@+id/details"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph."
+                android:text="@{bindingPojoDetails.description != null? bindingPojoDetails.description.empty? exception: bindingPojoDetails.description: exception}"
                 android:layout_margin="10dp"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +105,7 @@
 
 
             <ProgressBar
-                android:id="@+id/progressbar_profile"
+                android:id="@+id/progressbar_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -22,8 +22,8 @@ public class RepoViewModel extends ViewModel {
         AppController.getInstance().getViewModelComponent().inject(this);
     }
 
-    public LiveData<RepoPojo> getRepo(String query) {
-        return gitRepoRepository.getRepoFromRepository(query);
+    public LiveData<RepoPojo> getRepo(String query, String stars) {
+        return gitRepoRepository.getRepoFromRepository(query, stars);
     }
 
 

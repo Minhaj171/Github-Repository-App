@@ -1,5 +1,11 @@
 package com.example.githubrepoapp.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.example.githubrepoapp.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -205,4 +211,15 @@ public class UserPojo {
     public void setSiteAdmin(Boolean siteAdmin) {
         this.siteAdmin = siteAdmin;
     }
+
+    @BindingAdapter("android:Thumb")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_github)
+                .error(R.drawable.ic_error)
+                .fitCenter()
+                .into(view);
+    }
+
 }

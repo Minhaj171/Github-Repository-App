@@ -1,5 +1,13 @@
 package com.example.githubrepoapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.example.githubrepoapp.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +16,7 @@ import java.security.acl.Owner;
 /**
  * Created by Md Minhajul Islam on 6/23/2022.
  */
-public class ItemPojo {
+public class ItemPojo implements Parcelable {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -33,6 +41,38 @@ public class ItemPojo {
     @SerializedName("stargazers_count")
     @Expose
     private Integer starCount;
+
+    protected ItemPojo(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        nodeId = in.readString();
+        name = in.readString();
+        fullName = in.readString();
+        byte tmp_private = in.readByte();
+        _private = tmp_private == 0 ? null : tmp_private == 1;
+        description = in.readString();
+        if (in.readByte() == 0) {
+            starCount = null;
+        } else {
+            starCount = in.readInt();
+        }
+        lastUpdatedDate = in.readString();
+    }
+
+    public static final Creator<ItemPojo> CREATOR = new Creator<ItemPojo>() {
+        @Override
+        public ItemPojo createFromParcel(Parcel in) {
+            return new ItemPojo(in);
+        }
+
+        @Override
+        public ItemPojo[] newArray(int size) {
+            return new ItemPojo[size];
+        }
+    };
 
     public String getDescription() {
         return description;
@@ -110,4 +150,32 @@ public class ItemPojo {
     public void setUser(UserPojo user) {
         this.user = user;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(nodeId);
+        dest.writeString(name);
+        dest.writeString(fullName);
+        dest.writeByte((byte) (_private == null ? 0 : _private ? 1 : 2));
+        dest.writeString(description);
+        if (starCount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(starCount);
+        }
+        dest.writeString(lastUpdatedDate);
+    }
+
 }

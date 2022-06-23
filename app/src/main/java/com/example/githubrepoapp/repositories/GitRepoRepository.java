@@ -1,6 +1,9 @@
 package com.example.githubrepoapp.repositories;
 
-import androidx.annotation.NonNull;
+import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
+
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.githubrepoapp.R;
@@ -12,9 +15,15 @@ import com.google.gson.JsonObject;
 
 import java.net.SocketTimeoutException;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
 
 /**
  * Created by Md Minhajul Islam on 6/23/2022.
@@ -29,14 +38,42 @@ public class GitRepoRepository {
         return networkingService.getRetrofit().create(IRepoApi.class);
     }
 
-    public MutableLiveData<RepoPojo> getRepoFromRepository(String query) {
+    public MutableLiveData<RepoPojo> getRepoFromRepository(String query, String stars) {
         repoPojoMutableLiveData = new MutableLiveData<>();
-        fetchRepoData(query);
+        fetchRepoData(query, stars);
         return repoPojoMutableLiveData;
     }
 
-    private void fetchRepoData(String query) {
-        repositoryCall = getRepoApi().getAllRepositories(query);
+//    private void fetchRepoDataFromCache(String query) {
+//        getRepoApi().getAllRepositories(query)
+//                .toObservable()
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Observer<RepoPojo>() {
+//                    @Override
+//                    public void onSubscribe(@NonNull Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(@NonNull RepoPojo repoPojo) {
+//                        Log.d(TAG, "onNext: " + repoPojo.getItems().size());
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        Log.d(TAG, "onError: " , e);
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
+//    }
+
+    private void fetchRepoData(String query, String stars) {
+        repositoryCall = getRepoApi().getAllRepositories(query, stars);
         repositoryCall.enqueue(new Callback<RepoPojo>() {
             RepoPojo repoPojo = new RepoPojo();
             @Override

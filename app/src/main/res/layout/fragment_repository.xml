@@ -4,38 +4,136 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="callback"
+            type="com.example.githubrepoapp.view.RepositoryFragment" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#768390"
-        tools:context=".view.RepositoryFragment">
+        android:fillViewport="true">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/repositoryRecycler"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            tools:listitem="@layout/list_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#768390">
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:indeterminateTint="@color/primary_500"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_toStartOf="@+id/calendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:paddingVertical="10dp"
+                                android:src="@drawable/ic_search_icon" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/search"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="4dp"
+                                android:background="@null"
+                                android:completionThreshold="1"
+                                android:hint="Search by stars or select a date"
+                                android:inputType="textAutoComplete"
+                                android:maxLines="1"
+                                android:paddingVertical="10dp" />
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/calendar"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/ic_calendar"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="@{()-> callback.onCalendarClick()}"
+                            android:indeterminateTint="@color/primary_500" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/search_section"
+                    app:layout_constraintEnd_toEndOf="@+id/search_section"
+                    app:layout_constraintTop_toBottomOf="@+id/search_section"
+                    />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/repositoryRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    tools:listitem="@layout/list_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/found"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

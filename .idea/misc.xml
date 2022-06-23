@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_calendar.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_error.xml" value="0.1" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_github.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_search_icon.xml" value="0.1" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_star.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/drawable/ic_success.xml" value="0.1" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/activity_splash.xml" value="0.15" />
-        <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/fragment_repository.xml" value="0.15" />
+        <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/fragment_repository.xml" value="0.25" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/fragment_repository_details.xml" value="0.1" />
         <entry key="..\:/Users/ffcav/Personal Project/GithubRepoApp/app/src/main/res/layout/list_item.xml" value="0.2" />
       </map>

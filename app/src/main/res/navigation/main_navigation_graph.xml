@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/repositoryFragment"
         android:name="com.example.githubrepoapp.view.RepositoryFragment"
-        android:label="RepositoryFragment" />
+        android:label="RepositoryFragment" >
+        <action
+            android:id="@+id/action_repositoryFragment_to_repositoryDetailsFragment"
+            app:destination="@id/repositoryDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repositoryDetailsFragment"
+        android:name="com.example.githubrepoapp.view.RepositoryDetailsFragment"
+        android:label="RepositoryDetailsFragment" />
 </navigation>
